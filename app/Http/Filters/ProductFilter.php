@@ -25,8 +25,10 @@ class ProductFilter extends AbstractFilter
         }
 
         foreach ($properties as $propertyName => $propertyValues) {
-            if (empty($propertyIdsByTitle[$propertyName]))
-                continue;
+            if (empty($propertyIdsByTitle[$propertyName])) {
+                $builder->orWhereNull('id');
+                break;
+            }
             $propertyId = $propertyIdsByTitle[$propertyName];
 
             $builder->whereHas('propertyValues', function ($query) use ($propertyId, $propertyValues) {
