@@ -26,7 +26,7 @@ class ProductFilter extends AbstractFilter
 
         foreach ($properties as $propertyName => $propertyValues) {
             if (empty($propertyIdsByTitle[$propertyName])) {
-                $builder->orWhereNull('id');
+                $builder->whereNull('id');
                 break;
             }
             $propertyId = $propertyIdsByTitle[$propertyName];
